@@ -52,21 +52,21 @@ public class BankTransferController {
         //bankTransferConfirmation.htmlのbankTransferApplicationという文字列にbankTransferFormが入る
         model.addAttribute("bankTransferApplication", bankTransferForm);
         //bankTransferConfirmation.htmlのbankNameという文字列に変数bankTransferFormに入っているbankNameのデータが入る(以下同様)
-        model.addAttribute("bankName", bankTransferForm.getBankName());
-        model.addAttribute("branchName", bankTransferForm.getBranchName());
-        System.out.println(bankTransferForm.getBankAccountType());
-//        if(Objects.equals(bankTransferForm.getBankAccountType(), "その他")){ model.addAttribute("bankAccountType",bankTransferForm.getBankotherAccountType());}
-//        else  {model.addAttribute("bankAccountType", bankTransferForm.getBankAccountType());}
+//        model.addAttribute("bankName", bankTransferForm.getBankName());
+//        model.addAttribute("branchName", bankTransferForm.getBranchName());
+//        System.out.println(bankTransferForm.getBankAccountType());
+////        if(Objects.equals(bankTransferForm.getBankAccountType(), "その他")){ model.addAttribute("bankAccountType",bankTransferForm.getBankotherAccountType());}
+////        else  {model.addAttribute("bankAccountType", bankTransferForm.getBankAccountType());}
         if(bankTransferForm.getBankAccountType().equals("その他")){
             model.addAttribute("bankAccountType", bankTransferForm.getBankotheracounttype());
         }
         else {
             model.addAttribute("bankAccountType", bankTransferForm.getBankAccountType());
         }
-        model.addAttribute("bankAccountNum", bankTransferForm.getBankAccountNum());
-        model.addAttribute("name", bankTransferForm.getName());
-        model.addAttribute("money", bankTransferForm.getMoney());
-        model.addAttribute("transferDate", bankTransferForm.getTransferDate());
+//        model.addAttribute("bankAccountNum", bankTransferForm.getBankAccountNum());
+//        model.addAttribute("name", bankTransferForm.getName());
+//        model.addAttribute("money", bankTransferForm.getMoney());
+//        model.addAttribute("transferDate", bankTransferForm.getTransferDate());
         return "bankTransferConfirmation";
     }
 

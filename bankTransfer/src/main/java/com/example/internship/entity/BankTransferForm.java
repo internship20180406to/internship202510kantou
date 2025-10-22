@@ -93,4 +93,6 @@ public class BankTransferForm {
     public void setTransferDate(@NonNull LocalDate transferDate) {
         this.transferDate = transferDate;
     }
+
+// --></script>
 }
