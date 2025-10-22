@@ -23,9 +23,11 @@ public class InvestmentTrustController {
     public String bankTransfer(Model model) {
         // 金融機関名のセレクトボックス内の選択肢を生成
         List<String> bankName = new ArrayList<>();
-        bankName.add("A銀行");
-        bankName.add("B銀行");
-        bankName.add("C銀行");
+        bankName.add("銀行名を入力");
+        bankName.add("三井住友銀行");
+        bankName.add("三菱UFJ銀行");
+        bankName.add("みずほ銀行");
+        bankName.add("福岡銀行");
 
         // 科目名のセレクトボックス内の選択肢を生成
         List<String> bankAccountType = new ArrayList<>();
@@ -37,9 +39,10 @@ public class InvestmentTrustController {
 
         // 銘柄選択のセレクトボックス内の選択肢を生成する
         List<String> fundName = new ArrayList<>();
-        fundName.add("銘柄1");
-        fundName.add("銘柄2");
-        fundName.add("銘柄3");
+        fundName.add("銘柄を入力");
+        fundName.add("インベスコ世界厳選株式オープン＜為替ヘッジなし＞（毎月決算型）（世界のベスト）");
+        fundName.add("ｅＭＡＸＩＳ Ｓｌｉｍ米国株式（Ｓ＆Ｐ５００）");
+        fundName.add("ｅＭＡＸＩＳ Ｓｌｉｍ全世界株式（オール・カントリー）（オルカン）");
 
         //investmentTrustMain.htmlのinvestmentTrustApplicationという文字列にInvestmentTrustFormが入る
         model.addAttribute("investmentTrustApplication", new InvestmentTrustForm());
