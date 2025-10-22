@@ -27,6 +27,16 @@ public class BankTransferController {
         bankName.add("A銀行");
         bankName.add("B銀行");
         bankName.add("C銀行");
+        bankName.add("D銀行");
+        bankName.add("E銀行");
+        bankName.add("F銀行");
+        bankName.add("G銀行");
+        bankName.add("H銀行");
+        bankName.add("I銀行");
+        bankName.add("J銀行");
+        bankName.add("K銀行");
+        bankName.add("Aa銀行");
+        bankName.add("Ab銀行");
 
         // 科目名のセレクトボックス内の選択肢を生成
         List<String> bankAccountType = new ArrayList<>();
@@ -53,11 +63,27 @@ public class BankTransferController {
         //bankTransferConfirmation.htmlのbankNameという文字列に変数bankTransferFormに入っているbankNameのデータが入る(以下同様)
         model.addAttribute("bankName", bankTransferForm.getBankName());
         model.addAttribute("branchName", bankTransferForm.getBranchName());
-        model.addAttribute("bankAccountType", bankTransferForm.getBankAccountType());
+        if(bankTransferForm.getBankAccountType() == "その他"){
+            model.addAttribute("bankAccountType", bankTransferForm.getBankAccountTypeOther());
+        }else {
+            model.addAttribute("bankAccountType", bankTransferForm.getBankAccountType());
+        }
         model.addAttribute("bankAccountNum", bankTransferForm.getBankAccountNum());
         model.addAttribute("name", bankTransferForm.getName());
         model.addAttribute("money", bankTransferForm.getMoney());
         model.addAttribute("transferDate", bankTransferForm.getTransferDate());
+        if(bankTransferForm.getBankName().equals("A銀行")){
+            model.addAttribute("transferFee", 0);
+        }else if(bankTransferForm.getBankName().equals("B銀行")){
+            model.addAttribute("transferFee", 100);
+        }else {
+            if(bankTransferForm.getMoney() >= 30000){
+                model.addAttribute("transferFee", 440);
+            }
+            else if(bankTransferForm.getMoney() < 30000){
+                model.addAttribute("transferFee", 220);
+            }
+        }
         return "bankTransferConfirmation";
     }
 

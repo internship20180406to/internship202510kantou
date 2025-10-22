@@ -86,6 +86,22 @@
         <input type="hidden" name="transferDate" th:value="*{transferDate}"/>
     </div>
 
+    <hr>
+
+    <div class="row">
+        <div class="label">振り込み金額</div>
+        <div class="colon">:</div>
+        <div class="value" th:text="*{money}"></div>
+        <input type="hidden" name="money" th:value="*{money}"/>
+    </div>
+
+    <div class="row">
+        <div class="label">振り込み手数料</div>
+        <div class="colon">:</div>
+        <div class="value" th:text="${transferFee}"></div>
+        <input type="hidden" name="transferFee" th:value="${transferFee}"/>
+    </div>
+
     <p>
     <div class="row">
     <!--            確認ボタン(submitボタン＝押された場合にform action...の部分で定義されている動きを行う)-->
