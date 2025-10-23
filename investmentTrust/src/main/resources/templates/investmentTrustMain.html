@@ -163,8 +163,9 @@ input[type="number"] {
                    placeholder="1234567"
                    autocomplete="off"/>
         </p>
-        <p><label class="ml-1">購入者氏名 <small class="text-danger ml-1">※</small></label><br>
-            <input type="text" required th:field="*{name}" class="form-control" placeholder="氏名を入力してください"
+        <p><div id="errorMessages5" class="text-danger px"></div>
+            <label class="ml-1">購入者氏名 <small class="text-danger ml-1">※</small></label><br>
+            <input type="text" th:field="*{name}" class="form-control" placeholder="氏名を入力してください" id="inputField5"
                    autocomplete="off"/></p>
         <p><div id="errorMessages" class="text-danger px"></div>
             <label class="ml-1">銘柄選択 <small class="text-danger ml-1">※</small></label><br>
@@ -176,8 +177,9 @@ input[type="number"] {
             </select>
         </p>
 
-        <p><label class="ml-1">購入金額(円) <small class="text-danger ml-1">※</small></label><br>
-            <input type="number" required max="100000000"  min="1" th:field="*{money}" id="myNumber" class="form-control"/></p>
+        <p><div id="errorMessages6" class="text-danger px"></div>
+            <label class="ml-1">購入金額(円) <small class="text-danger ml-1">※</small></label><br>
+            <input type="number" max="100000000"  min="1" th:field="*{money}" id="inputField6" class="form-control"/></p>
         <script>
       const inputElement = document.getElementById('myNumber');
       inputElement.addEventListener('input', function() {
@@ -201,6 +203,8 @@ input[type="number"] {
          let errorMessages2 = [];
          let errorMessages3 = [];
          let errorMessages4 = [];
+         let errorMessages5 = [];
+         let errorMessages6 = [];
 
                 // 例として、入力フィールドが空の場合のエラーチェック
                 let inputField = document.getElementById('inputField');
@@ -235,20 +239,42 @@ input[type="number"] {
                     // エラーメッセージを配列に追加
                     errorMessages4.push("口座番号を入力してください。");
                 }
+                let inputField5 = document.getElementById('inputField5');
+                console.log(inputField5.value)
+                if (inputField5.value=="") {
+                console.log("ok")
+                e.preventDefault();
+                    // エラーメッセージを配列に追加
+                    errorMessages5.push("購入者氏名を入力してください。");
+                }
+                let inputField6 = document.getElementById('inputField6');
+                console.log(inputField6.value)
+                if (inputField6.value=="") {
+                console.log("ok")
+                e.preventDefault();
+                    // エラーメッセージを配列に追加
+                    errorMessages6.push("金額を入力してください。");
+                }
                  let errorMessageString = errorMessages.join(" ");
                  let errorMessage2String = errorMessages2.join(" ");
                  let errorMessage3String = errorMessages3.join(" ");
                  let errorMessage4String = errorMessages4.join(" ");
+                 let errorMessage5String = errorMessages5.join(" ");
+                 let errorMessage6String = errorMessages6.join(" ");
 
                 // 3. メッセージを特定のdivに表示する前にクリア
                 let errorDiv = document.getElementById('errorMessages');
                  let errorDiv2 = document.getElementById('errorMessages2');
                  let errorDiv3 = document.getElementById('errorMessages3');
                  let errorDiv4 = document.getElementById('errorMessages4');
+                 let errorDiv5 = document.getElementById('errorMessages5');
+                 let errorDiv6 = document.getElementById('errorMessages6');
                 errorDiv.innerHTML = "";
                 errorDiv2.innerHTML = "";
                 errorDiv3.innerHTML = "";
                 errorDiv4.innerHTML = "";
+                errorDiv5.innerHTML = "";
+                errorDiv6.innerHTML = "";
 
 
                 // 連結されたメッセージが空でないことを確認して表示
@@ -263,6 +289,12 @@ input[type="number"] {
                 }
                 if (errorMessage4String) {
                     errorDiv4.innerHTML = errorMessage4String;
+                }
+                if (errorMessage5String) {
+                    errorDiv5.innerHTML = errorMessage5String;
+                }
+                if (errorMessage6String) {
+                    errorDiv6.innerHTML = errorMessage6String;
                 }
         console.log("no")
         })
