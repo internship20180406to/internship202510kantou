@@ -179,16 +179,10 @@ input[type="number"] {
 
         <p><div id="errorMessages6" class="text-danger px"></div>
             <label class="ml-1">購入金額(円) <small class="text-danger ml-1">※</small></label><br>
-            <input type="number" max="100000000"  min="1" th:field="*{money}" id="inputField6" class="form-control"/></p>
-        <script>
-      const inputElement = document.getElementById('myNumber');
-      inputElement.addEventListener('input', function() {
-        if (parseInt(this.value) > parseInt(this.max)) {
-          alert('最大値を超えています。');
-          this.value = this.max; // 制限値に強制的に戻す
-        }
-      });
-        </script>
+            <input type="number" max="100000000"  min="1" th:field="*{money}" id="inputField6" class="form-control"
+                   placeholder="0"/>
+        </p>
+
         <p style="text-align: center;">
 <!--            確認ボタン(submitボタン＝押された場合にform action...の部分で定義されている動きを行う)-->
             <input type="submit" value="確認" class="form-control-button form-confirmation-button"/>
