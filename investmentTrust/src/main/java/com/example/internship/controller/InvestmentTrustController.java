@@ -28,6 +28,7 @@ public class InvestmentTrustController {
         bankName.add("三菱UFJ銀行");
         bankName.add("みずほ銀行");
         bankName.add("福岡銀行");
+        bankName.add("他行");
 
         // 科目名のセレクトボックス内の選択肢を生成
         List<String> bankAccountType = new ArrayList<>();
@@ -64,6 +65,7 @@ public class InvestmentTrustController {
         bankName.add("三菱UFJ銀行");
         bankName.add("みずほ銀行");
         bankName.add("福岡銀行");
+        bankName.add("他行");
 
         // 科目名のセレクトボックス内の選択肢を生成
         List<String> bankAccountType = new ArrayList<>();
