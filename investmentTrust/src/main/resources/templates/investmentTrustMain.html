@@ -144,8 +144,9 @@ input[type="number"] {
 <!--        支店名のテキストボックスの実装部分-->
 <!--        <p>内は表示する文字を定義-->
 <!--        テキストボックスの場合はinputタグをつけた部分でInvestmentTrustFormのどこに入力内容が入るか紐づける-->
-        <p><label class="ml-1">支店名 <small class="text-danger ml-1">※</small></label><br>
-            <input type="text" required th:field="*{branchName}" class="form-control" placeholder="支店名を入力"/></p>
+        <p><div id="errorMessages3" class="text-danger px"></div>
+            <label class="ml-1">支店名 <small class="text-danger ml-1">※</small></label><br>
+            <input type="text" th:field="*{branchName}" class="form-control" placeholder="支店名を入力" id="inputField3"/></p>
         <p><label class="ml-1">科目名 <small class="text-danger ml-1">※</small></label><br>
             <select th:field="*{bankAccountType}" class="form-control">
                 <option th:each="option : ${bankAccountTypeOptions}"
@@ -197,6 +198,7 @@ input[type="number"] {
         form.addEventListener("submit", function (e) {
          let errorMessages = [];
          let errorMessages2 = [];
+         let errorMessages3 = [];
 
                 // 例として、入力フィールドが空の場合のエラーチェック
                 let inputField = document.getElementById('inputField');
@@ -214,16 +216,26 @@ input[type="number"] {
                 e.preventDefault();
                     // エラーメッセージを配列に追加
                     errorMessages2.push("銀行名を入力してください。");
-
+                }
+                 let inputField3 = document.getElementById('inputField3');
+                console.log(inputField3.value)
+                if (inputField3.value=="") {
+                console.log("ok")
+                e.preventDefault();
+                    // エラーメッセージを配列に追加
+                    errorMessages3.push("支店名を入力してください。");
                 }
                  let errorMessageString = errorMessages.join(" ");
                  let errorMessage2String = errorMessages2.join(" ");
+                 let errorMessage3String = errorMessages3.join(" ");
 
                 // 3. メッセージを特定のdivに表示する前にクリア
                 let errorDiv = document.getElementById('errorMessages');
                  let errorDiv2 = document.getElementById('errorMessages2');
+                 let errorDiv3 = document.getElementById('errorMessages3');
                 errorDiv.innerHTML = "";
                 errorDiv2.innerHTML = "";
+                errorDiv3.innerHTML = "";
 
                 // 連結されたメッセージが空でないことを確認して表示
                 if (errorMessageString) {
@@ -231,6 +243,9 @@ input[type="number"] {
                 }
                 if (errorMessage2String) {
                     errorDiv2.innerHTML = errorMessage2String;
+                }
+                if (errorMessage3String) {
+                    errorDiv3.innerHTML = errorMessage3String;
                 }
         console.log("no")
         })
