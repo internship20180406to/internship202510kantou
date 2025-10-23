@@ -74,6 +74,10 @@
         color: green;
         }
 
+        .px {
+        font-size :10px;
+        }
+
 
   .suggest-box {
     border: 1px solid #ccc;
@@ -110,14 +114,16 @@
 <!--        金融機関名のセレクトボックスの実装部分-->
 <!--        選択肢はbankNameに入るデータ(Controllerの実装によりbankName＝変数bankNameの中のデータが入る)-->
 <!--        th:field="*{bankName}"と書くことでInvestmentTrustFormのどこに入力内容が入るか紐づいている-->
-        <p><label class="ml-1">金融機関名 <small class="text-danger ml-1">※</small></label><br>
-            <select th:field="*{bankName}" class="form-control" id="messeage">
+        <p><div id="errorMessages2" class="text-danger px"></div>
+            <label class="ml-1">金融機関名 <small class="text-danger ml-1">※</small></label><br>
+            <select th:field="*{bankName}" class="form-control" id="inputField2">
                 <option th:each="option : ${bankName}"
                         th:value="${option}"
                         th:text="${option}">選択肢
                 </option>
             </select>
         </p>
+
 
 <!--        支店名のテキストボックスの実装部分-->
 <!--        <p>内は表示する文字を定義-->
@@ -142,7 +148,7 @@
         <p><label class="ml-1">購入者氏名 <small class="text-danger ml-1">※</small></label><br>
             <input type="text" required th:field="*{name}" class="form-control" placeholder="氏名を入力してください"
                    autocomplete="off"/></p>
-        <p><div id="errorMessages"></div>
+        <p><div id="errorMessages" class="text-danger px"></div>
             <label class="ml-1">銘柄選択 <small class="text-danger ml-1">※</small></label><br>
             <select th:field="*{fundName}" class="form-control" id='inputField'>
                 <option th:each="option : ${fundNameOptions}"
@@ -171,30 +177,47 @@
     </form>
 </div>
 <script>
+    const form = document.getElementById("confirmationForm");
+        form.addEventListener("submit", function (e) {
+         let errorMessages = [];
+         let errorMessages2 = [];
 
-     let errorMessages = [];
+                // 例として、入力フィールドが空の場合のエラーチェック
+                let inputField = document.getElementById('inputField');
+                console.log(inputField.value)
+                if (inputField.value=="銘柄を入力") {
+                console.log("ok")
+                e.preventDefault();
+                    // エラーメッセージを配列に追加
+                    errorMessages.push("銘柄名を入力してください。");
+                }
+                 let inputField2 = document.getElementById('inputField2');
+                console.log(inputField2.value)
+                if (inputField2.value=="銀行名を入力") {
+                console.log("ok")
+                e.preventDefault();
+                    // エラーメッセージを配列に追加
+                    errorMessages2.push("銀行名を入力してください。");
 
-            // 例として、入力フィールドが空の場合のエラーチェック
-            let inputField = document.getElementById('inputField');
-            console.log(inputField.value)
-            if (inputField.value=="銘柄を入力") {
-            console.log("ok")
-            e.preventDefault();
-                // エラーメッセージを配列に追加
-                errorMessages.push("銘柄名を入力してください。");
-            }
-             let errorMessageString = errorMessages.join(" ");
+                }
+                 let errorMessageString = errorMessages.join(" ");
+                 let errorMessage2String = errorMessages2.join(" ");
 
-            // 3. メッセージを特定のdivに表示する前にクリア
-            let errorDiv = document.getElementById('errorMessages');
-            errorDiv.innerHTML = "";
+                // 3. メッセージを特定のdivに表示する前にクリア
+                let errorDiv = document.getElementById('errorMessages');
+                 let errorDiv2 = document.getElementById('errorMessages2');
+                errorDiv.innerHTML = "";
+                errorDiv2.innerHTML = "";
 
-            // 連結されたメッセージが空でないことを確認して表示
-            if (errorMessageString) {
-                errorDiv.innerHTML = errorMessageString;
-            }
-    console.log("no")
-    })
+                // 連結されたメッセージが空でないことを確認して表示
+                if (errorMessageString) {
+                    errorDiv.innerHTML = errorMessageString;
+                }
+                if (errorMessage2String) {
+                    errorDiv2.innerHTML = errorMessage2String;
+                }
+        console.log("no")
+        })
 </script>
 </body>
 
