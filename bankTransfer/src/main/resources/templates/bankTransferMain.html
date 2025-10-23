@@ -100,10 +100,38 @@
             <input type="text" th:field="*{bankotheracounttype}" class="form-control" placeholder="科目名を入力（例:外貨,通知）"/></p>
         <p><label class="ml-1">口座番号 <small class="text-danger ml-1">※</small></label><br>
             <input type="number"
-                   th:field="*{bankAccountNum}"
+            th:field="*{bankAccountNum}"
+            class="form-control"
+            placeholder=" 1234567 (7文字以上）"
+            autocomplete="off"value="" required>
+        </p>
+        <script type="text/javascript"><!--
+function InputCharCheck( minnum, target, report ) {
+   var diff = minnum - document.getElementById(target).value.length;
+   var reps, repc;
+   if( diff > 0 ) {
+      // 足りない場合
+      reps = "（あと " + diff + " 文字足りません）";
+      repc = "red";
+   }
+   else {
+      // 足りた場合
+      reps = "OK！";
+      repc  = "blue";
+   }
+   document.getElementById(report).innerHTML = reps;
+   document.getElementById(report).style.color = repc;
+}
+// --></script>
+        <p><label class="ml-1">口座番号（7文字以上）<small class="text-danger ml-1">※</small></label><br>
+            <input type="password" size="88.5" value="" id="sample1" onkeyup="InputCharCheck(6,'sample1','report1');"th:field="*{bankAccountNum}"
                    class="form-control"
                    placeholder=" 1234567 (7文字以上）"
                    autocomplete="off"value="" required>
+
+            <span id="report1"></span>
+
+
         </p>
         <p><label class="ml-1">口座名義 <small class="text-danger ml-1">※</small></label><br>
             <input type="text" th:field="*{name}" class="form-control" placeholder="氏名を入力してください"
@@ -119,7 +147,6 @@
             <!--            キャンセルボタン（入力内容を初期化）-->
             <input type="reset" value="クリア" class="form-control-button form-clear-button"/></p>
         <small class="text-danger ml-1">※は必須項目</small></label><br>
-
     </form>
 
 
