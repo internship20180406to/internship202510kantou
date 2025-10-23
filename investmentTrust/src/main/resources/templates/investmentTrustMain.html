@@ -155,8 +155,9 @@ input[type="number"] {
                 </option>
             </select>
         </p>
-        <p><label class="ml-1 no-spin">口座番号 <small class="text-danger ml-1">※</small></label><br>
-            <input type="number" required  max="9999999"  min="1000000"
+        <p><div id="errorMessages4" class="text-danger px"></div>
+            <label class="ml-1 no-spin">口座番号 <small class="text-danger ml-1">※</small></label><br>
+            <input type="number" max="9999999"  min="1000000" id="inputField4"
                    th:field="*{bankAccountNum}"
                    class="form-control"
                    placeholder="1234567"
@@ -199,6 +200,7 @@ input[type="number"] {
          let errorMessages = [];
          let errorMessages2 = [];
          let errorMessages3 = [];
+         let errorMessages4 = [];
 
                 // 例として、入力フィールドが空の場合のエラーチェック
                 let inputField = document.getElementById('inputField');
@@ -225,17 +227,29 @@ input[type="number"] {
                     // エラーメッセージを配列に追加
                     errorMessages3.push("支店名を入力してください。");
                 }
+                let inputField4 = document.getElementById('inputField4');
+                console.log(inputField4.value)
+                if (inputField4.value=="") {
+                console.log("ok")
+                e.preventDefault();
+                    // エラーメッセージを配列に追加
+                    errorMessages4.push("口座番号を入力してください。");
+                }
                  let errorMessageString = errorMessages.join(" ");
                  let errorMessage2String = errorMessages2.join(" ");
                  let errorMessage3String = errorMessages3.join(" ");
+                 let errorMessage4String = errorMessages4.join(" ");
 
                 // 3. メッセージを特定のdivに表示する前にクリア
                 let errorDiv = document.getElementById('errorMessages');
                  let errorDiv2 = document.getElementById('errorMessages2');
                  let errorDiv3 = document.getElementById('errorMessages3');
+                 let errorDiv4 = document.getElementById('errorMessages4');
                 errorDiv.innerHTML = "";
                 errorDiv2.innerHTML = "";
                 errorDiv3.innerHTML = "";
+                errorDiv4.innerHTML = "";
+
 
                 // 連結されたメッセージが空でないことを確認して表示
                 if (errorMessageString) {
@@ -246,6 +260,9 @@ input[type="number"] {
                 }
                 if (errorMessage3String) {
                     errorDiv3.innerHTML = errorMessage3String;
+                }
+                if (errorMessage4String) {
+                    errorDiv4.innerHTML = errorMessage4String;
                 }
         console.log("no")
         })
