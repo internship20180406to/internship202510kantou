@@ -95,11 +95,11 @@
     <div class="row">
     <!--            確認ボタン(submitボタン＝押された場合にform action...の部分で定義されている動きを行う)-->
         <div class="label">
-            <input type="submit" id="submit" value="申込" style="background-color: #007BFF; color: white;"/>
+            <input type="submit" value="申込" style="background-color: #007BFF; color: white;"/>
         </div>
     <!--            キャンセルボタン(/investmentTrustにアクセス　Controllerの23行目へ飛ぶ)-->
         <div class="value">
-            <input type="button" value="キャンセル" onclick="window.location='/investmentTrust';"/>
+            <input type="button" value="キャンセル" onclick="cancelAction()"/>
         </div>
     </div>
     </p>
@@ -107,6 +107,13 @@
 </form>
 <!--resources/static.js/investmentTrustConfirmation.jsをこのHTML内で動かす-->
 <script th:inline="javascript" src="/js/investmentTrustConfirmation.js"></script>
+<script>
+    function cancelAction(){
+    const form = document.getElementById('confirmationForm');
+    form.action = '/investmentTrust2';
+    form.submit();
+    }
+</script>
 
 </body>
 </html>
