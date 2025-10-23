@@ -102,8 +102,9 @@
                 </option>
             </select>
         </p>
-        <p><label class="ml-1">科目名 その他</label><br>
+        <!--<p><label class="ml-1">科目名 その他</label><br>
             <input type="text" th:field="*{bankAccountTypeOther}" class="form-control" placeholder="支店名を入力"/></p>
+        -->
         <p><label class="ml-1">口座番号 <small class="text-danger ml-1">※</small></label><br>
             <input type="number"
                    th:field="*{bankAccountNum}"
@@ -127,6 +128,9 @@
             <input type="reset" value="クリア" class="form-control-button form-clear-button"/></p>
     </form>
 </div>
+
+<script th:inline="javascript" src="/js/bankTransferMain.js"></script>
+
 </body>
 
 </html>
